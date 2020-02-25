@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Umc\Sample\Api\SomethingRepositoryInterface" type="Umc\Sample\Model\SomethingRepo" />
+    <preference for="Umc\Sample\Api\SomethingListRepositoryInterface" type="Umc\Sample\Model\SomethingListRepo" />
+    <preference for="Umc\Sample\Api\Data\SomethingInterface" type="Umc\Sample\Model\Something" />
+    <preference for="Umc\Sample\Api\Data\SomethingSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Umc\Sample\Api\SomethingElseRepositoryInterface" type="Umc\Sample\Model\SomethingElseRepo" />
+    <preference for="Umc\Sample\Api\SomethingElseListRepositoryInterface" type="Umc\Sample\Model\SomethingElseListRepo" />
+    <preference for="Umc\Sample\Api\Data\SomethingElseInterface" type="Umc\Sample\Model\SomethingElse" />
+    <preference for="Umc\Sample\Api\Data\SomethingElseSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Umc\Sample\Api\Data\SomethingInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">sample_something</item>
+                    <item name="identifierField" xsi:type="string">something_id</item>
+                </item>
+                <item name="Umc\Sample\Api\Data\SomethingElseInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">sample_something_else</item>
+                    <item name="identifierField" xsi:type="string">something_else_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- configure resource models -->
+    <type name="Umc\Sample\Model\ResourceModel\Something">
+        <arguments>
+            <argument name="storeTable" xsi:type="string">sample_something_store</argument>
+            <argument name="interfaceClass" xsi:type="string">Umc\Sample\Api\Data\SomethingInterface</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Model\ResourceModel\SomethingElse">
+        <arguments>
+            <argument name="interfaceClass" xsi:type="string">Umc\Sample\Api\Data\SomethingElseInterface</argument>
+        </arguments>
+    </type>
+    <!-- set model used by the grid -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sample_something_listing_data_source" xsi:type="string">SampleModelResourceModelSomethingGridCollection</item>
+                <item name="sample_something_else_listing_data_source" xsi:type="string">SampleModelResourceModelSomethingElseGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Model\ResourceModel\Something\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sample_something</argument>
+            <argument name="eventPrefix" xsi:type="string">sample_something_collection</argument>
+            <argument name="eventObject" xsi:type="string">something_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Umc\Sample\Model\ResourceModel\Something</argument>
+            <argument name="model" xsi:type="string">Umc\Sample\Model\Something</argument>
+            <argument name="storeTable" xsi:type="string">sample_something_store</argument>
+            <argument name="interfaceClass" xsi:type="string">Umc\Sample\Api\Data\SomethingInterface</argument>
+        </arguments>
+    </type>
+    <virtualType name="SampleModelResourceModelSomethingGridCollection" type="Umc\Sample\Model\ResourceModel\Something\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sample_something</argument>
+            <argument name="eventPrefix" xsi:type="string">sample_something_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">something_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Umc\Sample\Model\ResourceModel\Something</argument>
+            <argument name="model" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\Document</argument>
+            <argument name="storeTable" xsi:type="string">sample_something_store</argument>
+        </arguments>
+    </virtualType>
+    <type name="Umc\Sample\Model\ResourceModel\SomethingElse\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sample_something_else</argument>
+            <argument name="eventPrefix" xsi:type="string">sample_something_else_collection</argument>
+            <argument name="eventObject" xsi:type="string">something_else_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Umc\Sample\Model\ResourceModel\SomethingElse</argument>
+            <argument name="model" xsi:type="string">Umc\Sample\Model\SomethingElse</argument>
+            <argument name="interfaceClass" xsi:type="string">Umc\Sample\Api\Data\SomethingElseInterface</argument>
+        </arguments>
+    </type>
+    <virtualType name="SampleModelResourceModelSomethingElseGridCollection" type="Umc\Sample\Model\ResourceModel\SomethingElse\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sample_something_else</argument>
+            <argument name="eventPrefix" xsi:type="string">sample_something_else_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">something_else_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Umc\Sample\Model\ResourceModel\SomethingElse</argument>
+            <argument name="model" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\Document</argument>
+        </arguments>
+    </virtualType>
+    <!-- configure selects -->
+    <virtualType name="SampleSomethingSourceRegularSelect" type="Umc\Crud\Source\Options">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="number">1</item>
+                    <item name="label" xsi:type="string" translatable="true">Option 1</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="value" xsi:type="number">2</item>
+                    <item name="label" xsi:type="string" translatable="true">Option 2</item>
+                </item>
+                <item name="2" xsi:type="array">
+                    <item name="value" xsi:type="number">3</item>
+                    <item name="label" xsi:type="string" translatable="true">Option 3</item>
+                </item>
+                <item name="3" xsi:type="array"><!-- This should not appear in the dropdown because it's disabled -->
+                    <item name="value" xsi:type="number">4</item>
+                    <item name="label" xsi:type="string" translatable="true">Option 4</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSourceRegularMultiselect" type="Umc\Crud\Source\Options">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="number">1</item>
+                    <item name="label" xsi:type="string" translatable="true">Multi Option 1</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="value" xsi:type="number">2</item>
+                    <item name="label" xsi:type="string" translatable="true">Multi Option 2</item>
+                </item>
+                <item name="2" xsi:type="array">
+                    <item name="value" xsi:type="number">3</item>
+                    <item name="label" xsi:type="string" translatable="true">Multi Option 3</item>
+                </item>
+                <item name="3" xsi:type="array"><!-- This should not appear in the dropdown because it's disabled -->
+                    <item name="value" xsi:type="number">4</item>
+                    <item name="label" xsi:type="string" translatable="true">Multi Option 4</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSourceColorAttributeOptions" type="Umc\Crud\Source\Catalog\ProductAttributeOptions">
+        <arguments>
+            <argument name="attributeCode" xsi:type="string">color</argument>
+        </arguments>
+    </virtualType>
+    <!-- conifugre store relation -->
+    <virtualType name="SampleSomethingRelateStoreResourceReadHandler" type="Umc\Crud\Model\ResourceModel\Relation\Store\ReadHandler">
+        <arguments>
+            <argument name="resource" xsi:type="object">Umc\Sample\Model\ResourceModel\Something</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingRelateStoreResourceSaveHandler" type="Umc\Crud\Model\ResourceModel\Relation\Store\SaveHandler">
+        <arguments>
+            <argument name="resource" xsi:type="object">Umc\Sample\Model\ResourceModel\Something</argument>
+            <argument name="entityType" xsi:type="string">Umc\Sample\Api\Data\SomethingInterface</argument>
+            <argument name="storeTable" xsi:type="string">sample_something_store</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingImageInfo" type="Umc\Crud\Model\FileInfo">
+        <arguments>
+            <argument name="filePath" xsi:type="string">sample/something/image</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingFileInfo" type="Umc\Crud\Model\FileInfo">
+        <arguments>
+            <argument name="filePath" xsi:type="string">sample/something/file</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Umc\Sample\Api\Data\SomethingInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">SampleSomethingRelateStoreResourceReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">SampleSomethingRelateStoreResourceSaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">SampleSomethingRelateStoreResourceSaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

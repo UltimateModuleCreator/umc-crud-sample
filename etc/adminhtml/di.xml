@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--[+] define the ui config for "something" entity -->
+    <virtualType name="SampleSomethingUiConfig" type="Umc\Crud\Ui\EntityUiConfig">
+        <arguments>
+            <argument name="interface" xsi:type="string">\Umc\Sample\Api\Data\SomethingInterface</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name_attribute" xsi:type="string">title</item><!-- this is the attribute / field name that represents your entity -->
+                <item name="labels" xsi:type="array">
+                    <item name="new" xsi:type="string" translatable="true">Add something new</item>
+                    <item name="back" xsi:type="string" translatable="true">Back to list</item>
+                    <item name="save" xsi:type="string" translatable="true">Save Something</item>
+                    <item name="save_and_duplicate" xsi:type="string" translatable="true"><![CDATA[Save & Duplicate Something]]></item>
+                    <item name="save_and_close" xsi:type="string" translatable="true"><![CDATA[Save & Go to list]]></item>
+                    <item name="delete" xsi:type="string" translatable="true">Delete Soemthing</item>
+                    <item name="delete_message" xsi:type="string" translatable="true">Are you sure you want to delete something?</item>
+                </item>
+                <item name="save" xsi:type="array">
+                    <!-- uncomment lines below to remove the "Save and close" and "Save and duplicate" buttons -->
+                    <!--<item name="allow_close" xsi:type="boolean">false</item>-->
+                    <!--<item name="allow_duplicate" xsi:type="boolean">false</item>-->
+                </item>
+                <item name="list" xsi:type="array">
+                    <item name="page_title" xsi:type="string" translatable="true">Somethings</item>
+                </item>
+                <item name="messages" xsi:type="array">
+                    <item name="delete" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">Something successfully deleted</item>
+                        <item name="missing_entity" xsi:type="string" translatable="true">Couldn't find something to delete</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem deleting something</item>
+                    </item>
+                    <item name="save" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">Something successfully saved</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem saving something</item>
+                        <item name="duplicate" xsi:type="string" translatable="true">Something duplicated successfully</item>
+                    </item>
+                    <item name="mass_delete" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">%1 something(s) were successfully deleted</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem deleting something</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--[-] define the ui config for "something" entity -->
+    <!--[+] define the ui config for "something else" entity -->
+    <virtualType name="SampleSomethingElseUiConfig" type="Umc\Crud\Ui\EntityUiConfig">
+        <arguments>
+            <argument name="interface" xsi:type="string">\Umc\Sample\Api\Data\SomethingElseInterface</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name_attribute" xsi:type="string">name</item><!-- this is the attribute / field name that represents your entity -->
+                <item name="menu" xsi:type="string">Umc_Sample::sample_something_else</item>
+                <item name="list" xsi:type="array">
+                    <item name="page_title" xsi:type="string" translatable="true">Something Elses</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--[-] define the ui config for "something else" entity -->
+    <!--[+] configure the grid actions column  for "something" endity-->
+    <virtualType name="SampleSomethingGridActions" type="Umc\Crud\Ui\Component\Listing\ActionsColumn">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <!--[+] configure the grid actions column  for "something else" endity-->
+    <virtualType name="SampleSomethingElseGridActions" type="Umc\Crud\Ui\Component\Listing\ActionsColumn">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] configure the grid actions column  for "something else" endity-->
+    <!--[+] configure image uploader for 'something' entity-->
+    <virtualType name="SampleSomethingImageUploader" type="Umc\Crud\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">sample/tmp/something/image</argument>
+            <argument name="basePath" xsi:type="string">sample/something/image</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--[-] configure file uploader for 'something' entity-->
+    <virtualType name="SampleSomethingFileUploader" type="Umc\Crud\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">sample/tmp/something/file</argument>
+            <argument name="basePath" xsi:type="string">sample/something/file</argument>
+            <argument name="allowedExtensions" xsi:type="array" />
+        </arguments>
+    </virtualType>
+    <!--[-] configure file uploader for 'something' entity-->
+    <!--[+] configure admin controllers to use the ui entity config for "something" -->
+    <type name="Umc\Sample\Controller\Adminhtml\Something\Index">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\Something\Edit">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\Something\Save">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">SampleSomethingSaveDataProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\Something\InlineEdit">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">SampleSomethingSaveDataProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\Something\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Umc\Sample\Model\SomethingUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\Something\MassDelete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Umc\Sample\Model\SomethingUiManager</argument>
+            <argument name="collectionProvider" xsi:type="object">Umc\Sample\Model\SomethingUiCollectionProvider</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\Something\Image\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SampleSomethingImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\Something\File\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SampleSomethingFileUploader</argument>
+        </arguments>
+    </type>
+    <!--[-] configure admin controllers to use the ui entity config for "something" -->
+    <!--[+] configure admin controllers to use the ui entity config for "something else" -->
+    <type name="Umc\Sample\Controller\Adminhtml\SomethingElse\Index">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\SomethingElse\Edit">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingElseUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\SomethingElse\Save">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingElseUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">Umc\Crud\Ui\SaveDataProcessor\NullProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\SomethingElse\InlineEdit">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingElseUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">Umc\Crud\Ui\SaveDataProcessor\NullProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\SomethingElse\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Umc\Sample\Model\SomethingElseUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Umc\Sample\Controller\Adminhtml\SomethingElse\MassDelete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Umc\Sample\Model\SomethingElseUiManager</argument>
+        </arguments>
+    </type>
+    <!--[-] configure admin controllers to use the ui entity config for "something else" -->
+    <!--[+] configure form data provider for 'something' -->
+    <virtualType name="SampleSomethingFormMultiselectModifier" type="Umc\Crud\Ui\Form\DataModifier\Multiselect">
+        <arguments>
+            <argument name="fields" xsi:type="array">
+                <item name="country_multiselect" xsi:type="string">country_multiselect</item>
+                <item name="simple_country_multiselect" xsi:type="string">simple_country_multiselect</item>
+                <item name="product_attribute_multiselect" xsi:type="string">product_attribute_multiselect</item>
+                <item name="product_attribute_set_multiselect" xsi:type="string">product_attribute_set_multiselect</item>
+                <item name="regular_multiselect" xsi:type="string">regular_multiselect</item>
+                <item name="color_multiselect" xsi:type="string">color_multiselect</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingUiFormImageModifier" type="Umc\Crud\Ui\Form\DataModifier\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SampleSomethingImageUploader</argument>
+            <argument name="fileInfo" xsi:type="object">SampleSomethingImageInfo</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="image" xsi:type="string">image</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingUiFormFileModifier" type="Umc\Crud\Ui\Form\DataModifier\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SampleSomethingFileUploader</argument>
+            <argument name="fileInfo" xsi:type="object">SampleSomethingFileInfo</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="file" xsi:type="string">file</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingUiFormDynamicRowsModifier" type="Umc\Crud\Ui\Form\DataModifier\DynamicRows">
+        <arguments>
+            <argument name="fields" xsi:type="array">
+                <item name="serialized_field" xsi:type="string">serialized_field</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingFormDataModifier" type="Umc\Crud\Ui\Form\DataModifier\CompositeDataModifier">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <!-- add here all form data modifiers -->
+                <item name="multiselect" xsi:type="object">SampleSomethingFormMultiselectModifier</item>
+                <item name="image" xsi:type="object">SampleSomethingUiFormImageModifier</item>
+                <item name="file" xsi:type="object">SampleSomethingUiFormFileModifier</item>
+                <item name="dynamicRows" xsi:type="object">SampleSomethingUiFormDynamicRowsModifier</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleUiFormSomethingDataProvider" type="Umc\Crud\Ui\Form\DataProvider">
+        <arguments>
+            <argument name="primaryFieldName" xsi:type="object">something_id</argument>
+            <argument name="requestFieldName" xsi:type="object">something_id</argument>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+            <argument name="dataModifier" xsi:type="object">SampleSomethingFormDataModifier</argument>
+            <argument name="collectionProvider" xsi:type="object">Umc\Sample\Model\SomethingUiCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] configure form data provider for 'something' -->
+    <!--[+] configure save data processors for 'something' -->
+    <virtualType name="SampleSomethingSaveDateProcessor" type="Umc\Crud\Ui\SaveDataProcessor\Date">
+        <arguments>
+            <argument name="fields" xsi:type="array">
+                <item name="some_date" xsi:type="string">some_date</item>
+                <item name="date_time" xsi:type="string">date_time</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSaveMultiselectProcessor" type="Umc\Crud\Ui\SaveDataProcessor\Multiselect">
+        <arguments>
+            <argument name="fields" xsi:type="array">
+                <item name="country_multiselect" xsi:type="string">country_multiselect</item>
+                <item name="simple_country_multiselect" xsi:type="string">simple_country_multiselect</item>
+                <item name="product_attribute_multiselect" xsi:type="string">product_attribute_multiselect</item>
+                <item name="product_attribute_set_multiselect" xsi:type="string">product_attribute_set_multiselect</item>
+                <item name="regular_multiselect" xsi:type="string">regular_multiselect</item>
+                <item name="color_multiselect" xsi:type="string">color_multiselect</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSaveImageProcessor" type="Umc\Crud\Ui\SaveDataProcessor\Upload">
+        <arguments>
+            <argument name="fileInfo" xsi:type="object">SampleSomethingImageInfo</argument>
+            <argument name="uploader" xsi:type="object">SampleSomethingImageUploader</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="image" xsi:type="string">image</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSaveFileProcessor" type="Umc\Crud\Ui\SaveDataProcessor\Upload">
+        <arguments>
+            <argument name="fileInfo" xsi:type="object">SampleSomethingFileInfo</argument>
+            <argument name="uploader" xsi:type="object">SampleSomethingFileUploader</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="file" xsi:type="string">file</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSaveDynamicRowsProcessor" type="Umc\Crud\Ui\SaveDataProcessor\DynamicRows">
+        <arguments>
+            <argument name="fields" xsi:type="array">
+                <item name="serialized_field" xsi:type="string">serialized_field</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSaveDataProcessor" type="Umc\Crud\Ui\SaveDataProcessor\CompositeProcessor">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="date" xsi:type="object">SampleSomethingSaveDateProcessor</item>
+                <item name="multiselect" xsi:type="object">SampleSomethingSaveMultiselectProcessor</item>
+                <item name="image" xsi:type="object">SampleSomethingSaveImageProcessor</item>
+                <item name="file" xsi:type="object">SampleSomethingSaveFileProcessor</item>
+                <item name="dynamicRows" xsi:type="object">SampleSomethingSaveDynamicRowsProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--[-] configure save data processors for 'something' -->
+    <!--[+] configure save data processors for 'something else' -->
+    <virtualType name="SampleUiFormSomethingElseDataProvider" type="Umc\Crud\Ui\Form\DataProvider">
+        <arguments>
+            <argument name="primaryFieldName" xsi:type="object">something_else_id</argument>
+            <argument name="requestFieldName" xsi:type="object">something_else_id</argument>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+            <argument name="dataModifier" xsi:type="object">Umc\Crud\Ui\Form\DataModifier\NullModifier</argument>
+            <argument name="collectionProvider" xsi:type="object">Umc\Sample\Model\SomethingElseUiCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] configure save data processors for 'something' -->
+    <!--[+] form button configuration for 'something' -->
+    <virtualType name="SampleSomethingButtonBack" type="Umc\Crud\Block\Adminhtml\Button\Back">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingButtonSave" type="Umc\Crud\Block\Adminhtml\Button\Save">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingButtonDelete" type="Umc\Crud\Block\Adminhtml\Button\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingUiManager</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] form button configuration for 'something' -->
+    <!--[+] form button configuration for 'something else' -->
+    <virtualType name="SampleSomethingElseButtonBack" type="Umc\Crud\Block\Adminhtml\Button\Back">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingElseButtonSave" type="Umc\Crud\Block\Adminhtml\Button\Save">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingElseButtonDelete" type="Umc\Crud\Block\Adminhtml\Button\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingElseUiManager</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] form button configuration for 'something else' -->
+</config>

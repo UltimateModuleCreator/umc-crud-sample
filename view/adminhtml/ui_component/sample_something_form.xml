@@ -1,0 +1,814 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">sample_something_form.something_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Something Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="SampleSomethingButtonBack"/>
+            <button name="save" class="SampleSomethingButtonSave"/>
+            <button name="delete" class="SampleSomethingButtonDelete"/>
+            <button name="reset" class="Umc\Crud\Block\Adminhtml\Button\Reset"/>
+        </buttons>
+        <namespace>sample_something_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>sample_something_form.something_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="something_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="sample/something/save"/>
+        </settings>
+        <dataProvider class="SampleUiFormSomethingDataProvider" name="something_form_data_source" />
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Something information</label>
+        </settings>
+        <field name="something_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>something_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="something_else_id" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Something Else</label>
+                <dataScope>something_else_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+                <notice translate="true">Select where options are instances of another entity</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Umc\Sample\Source\SomethingElse"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="numbers">
+        <settings>
+            <label translate="true">Numbers</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="some_integer" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Some integer</label>
+                <dataScope>some_integer</dataScope>
+            </settings>
+        </field>
+        <field name="some_decimal" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Some decimal</label>
+                <dataScope>some_decimal</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="textarea">
+        <settings>
+            <label translate="true">Textareas</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="textarea" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Textarea</label>
+                <dataScope>textarea</dataScope>
+            </settings>
+        </field>
+        <field name="wysiwyg" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="height" xsi:type="string">100px</item>
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">false</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Wysiwyg</label>
+                <dataScope>wysiwyg</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg class="Magento\Ui\Component\Form\Element\Wysiwyg">
+                    <settings>
+                        <rows>8</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="dates">
+        <settings>
+            <label translate="true">Dates</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="some_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Some date</label>
+                <dataScope>some_date</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="date_time" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Date time</label>
+                <dataScope>date_time</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="booleans">
+        <settings>
+            <label translate="true">Booleans</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="flag" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Flag</label>
+                <dataScope>flag</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="select">
+        <settings>
+            <label translate="true">Selects</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="country" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Country</label>
+                <dataScope>country</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+                <notice translate="true">Select where options are the countries of the world</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Locale\Country"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="simple_country" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Country (with simple select UI)</label>
+                <dataScope>simple_country</dataScope>
+                <tooltip>
+                    <description translate="true">This is a tooltip</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Locale\Country"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="product_attribute" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Product Attribute</label>
+                <dataScope>product_attribute</dataScope>
+                <componentType>field</componentType>
+                <notice translate="true">Select where options the product attributes</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Umc\Crud\Source\Catalog\ProductAttribute"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="product_attribute_set" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Product Attribute Set</label>
+                <dataScope>product_attribute_set</dataScope>
+                <componentType>field</componentType>
+                <notice translate="true">Select where options are the product attribute sets</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Umc\Crud\Source\Catalog\ProductAttributeSet"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="regular_select" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Regular select</label>
+                <dataScope>regular_select</dataScope>
+                <componentType>field</componentType>
+                <notice translate="true">Select where options are defined by the developer (see etc/di.xml)</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="SampleSomethingSourceRegularSelect"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="color" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Color</label>
+                <dataScope>color</dataScope>
+                <componentType>field</componentType>
+                <notice translate="true">Select with options from the 'color' product attribute</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="SampleSourceColorAttributeOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="multiselect">
+        <settings>
+            <label translate="true">Multiselects</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="country_multiselect" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Country multiselect</label>
+                <dataScope>country_multiselect</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+                <notice translate="true">Multiselect where the options are the countries of the world</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Locale\Country"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="simple_country_multiselect" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Country multiselect (with simple select UI)</label>
+                <dataScope>simple_country_multiselect</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Locale\Country"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="product_attribute_multiselect" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Product Attribute multiselect</label>
+                <dataScope>product_attribute_multiselect</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+                <notice translate="true">Multiselect where the options are product attributes</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Umc\Crud\Source\Catalog\ProductAttribute"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="product_attribute_set_multiselect" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Product Attribute Set multiselect</label>
+                <dataScope>product_attribute_set_multiselect</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+                <notice translate="true">Multiselect where the options are product attribute sets</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Umc\Crud\Source\Catalog\ProductAttributeSet"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="regular_multiselect" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Regular multiselect</label>
+                <dataScope>regular_multiselect</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+                <notice translate="true">Multiselect where the options are options defined by the developer (see etc/di.xml)</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="SampleSomethingSourceRegularMultiselect"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="color_multiselect" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Color multiselect</label>
+                <dataScope>color_multiselect</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+                <notice>Multiselect with options from the 'color' product attribute</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="SampleSourceColorAttributeOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="uploads">
+        <settings>
+            <label translate="true">Uploads</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="image" formElement="imageUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Image</label>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="sample/something_image/upload/field/image"/>
+                        </uploaderConfig>
+                        <!--<previewTmpl>Umc_Crud/image-preview</previewTmpl>-->
+                        <previewTmpl>Umc_Crud/preview</previewTmpl>
+                        <initialMediaGalleryOpenSubpath>sample/something</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="file" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/uploader</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">File</label>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="sample/something_file/upload/field/file"/>
+                        </uploaderConfig>
+                        <previewTmpl>Umc_Crud/preview</previewTmpl>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="dynamic">
+        <settings>
+            <label translate="true">Multiple fields</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <dynamicRows name="serialized_field">
+            <settings>
+                <addButtonLabel translate="true">Add Serialized field</addButtonLabel>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <componentType>dynamicRows</componentType>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">true</param>
+                </dndConfig>
+            </settings>
+            <container name="record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true" />
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="showFallbackReset" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <field name="field_one" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">serialized_field</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Field 1</label>
+                        <dataScope>field_one</dataScope>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <componentType>field</componentType>
+                    </settings>
+                </field>
+                <field name="field_two" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">serialized_field</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Field 2</label>
+                        <dataScope>field_two</dataScope>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <componentType>field</componentType>
+                    </settings>
+                </field>
+                <field name="field_select" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">something</item>
+                            <item name="filterOptions" xsi:type="boolean">true</item>
+                            <item name="chipsEnabled" xsi:type="boolean">true</item>
+                            <item name="disableLabel" xsi:type="boolean">true</item>
+                            <item name="multiple" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                        <dataType>text</dataType>
+                        <label translate="true">Select</label>
+                        <dataScope>field_select</dataScope>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <componentType>field</componentType>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options class="Magento\Config\Model\Config\Source\Locale\Country"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="data-grid-actions-cell">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+    <fieldset name="store">
+        <settings>
+            <label translate="true">Store views</label>
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="store_id" formElement="multiselect" class="Magento\Store\Ui\Component\Form\Field\StoreView">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">something</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <tooltip>
+                    <link>https://docs.magento.com/m2/ce/user_guide/configuration/scope.html</link>
+                    <description translate="true">What is this?</description>
+                </tooltip>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Umc\Crud\Source\StoreView"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

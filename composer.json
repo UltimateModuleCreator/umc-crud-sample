@@ -1,0 +1,24 @@
+{
+  "name": "umc/module-sample",
+  "description": "Magento 2 sample module that uses Umc_Crud to create the crud part",
+  "require": {
+    "php": "~7.1.3||~7.2.0||~7.3.0",
+    "magento/module-backend": "*",
+    "magento/module-config": "*",
+    "magento/module-ui": "*",
+    "umc/module-crud": "*",
+    "magento/framework": "*"
+  },
+  "type": "magento2-module",
+  "license": [
+    "MIT"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Umc\\Sample\\": ""
+    }
+  }
+}

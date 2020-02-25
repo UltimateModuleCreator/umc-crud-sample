@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sample_something_else" resource="default" engine="innodb" comment="Something Else Entity Table">
+        <column xsi:type="smallint" name="something_else_id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="false" comment="Name"/>
+        <column xsi:type="smallint" name="is_active" padding="2" nullable="false" comment="Is Active"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <index referenceId="SAMPLE_SOMETHING_ELSE_FULLTEXT" indexType="fulltext">
+            <column name="name" />
+        </index>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="something_else_id"/>
+        </constraint>
+    </table>
+    <table name="sample_something" resource="default" engine="innodb" comment="Something Entity Table">
+        <column xsi:type="smallint" name="something_id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="smallint" name="something_else_id" padding="6" unsigned="false" nullable="true" identity="false" comment="Something else FK"/>
+        <column xsi:type="varchar" name="title" length="255" nullable="false" comment="Title"/>
+        <column xsi:type="smallint" name="is_active" padding="2" nullable="false" comment="Is Active"/>
+        <column xsi:type="text" name="textarea" nullable="true" comment="Textarea"/>
+        <column xsi:type="text" name="wysiwyg" nullable="true" comment="Wysiwyg"/>
+        <column xsi:type="smallint" name="flag" padding="2" nullable="false" comment="Flag"/>
+        <column xsi:type="date" name="some_date" nullable="true" comment="Some date field"/>
+        <column xsi:type="timestamp" name="date_time" nullable="true" comment="Some date time field"/>
+        <column xsi:type="varchar" name="country" length="3" nullable="true" comment="Country"/>
+        <column xsi:type="varchar" name="simple_country" length="3" nullable="true" comment="Country but with a simple select Ui"/>
+        <column xsi:type="text" name="country_multiselect" nullable="true" comment="Country Multiselect"/>
+        <column xsi:type="text" name="simple_country_multiselect" nullable="true" comment="Country multiselect but with a simple select Ui"/>
+        <column xsi:type="varchar" name="product_attribute" length="50" nullable="true" comment="Product Attribute"/>
+        <column xsi:type="text" name="product_attribute_multiselect" nullable="true" comment="Product Attribute Multiselect"/>
+        <column xsi:type="int" name="product_attribute_set" padding="11" nullable="true" comment="Product Attribute Set"/>
+        <column xsi:type="text" name="product_attribute_set_multiselect" nullable="true" comment="Product Attribute Set Multiselect"/>
+        <column xsi:type="varchar" name="regular_select" length="3" nullable="true" comment="Regular Select"/>
+        <column xsi:type="text" name="regular_multiselect" nullable="true" comment="Regular Multiselect"/>
+        <column xsi:type="decimal" name="some_decimal" precision="12" scale="4" nullable="true" comment="Some Decimal" />
+        <column xsi:type="int" name="some_integer" padding="11" nullable="true" comment="Some Integer" />
+        <column xsi:type="int" name="color" padding="11" nullable="true" comment="Color"/>
+        <column xsi:type="text" name="color_multiselect" nullable="true" comment="Color Multiselect"/>
+        <column xsi:type="varchar" name="image" length="255" nullable="true" comment="Image"/>
+        <column xsi:type="varchar" name="file" length="255" nullable="true" comment="File"/>
+        <column xsi:type="text" name="serialized_field" nullable="true" comment="Serialized field"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <index referenceId="SAMPLE_SOMETHING_FULLTEXT" indexType="fulltext">
+            <column name="title" />
+            <column name="textarea" />
+            <column name="wysiwyg" />
+        </index>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="something_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SAMPLE_SOMETHING_SOMETHING_ELSE_SOMETHING_ID_SAMPLE_SOMETHING_ELSE_SOMETHING_ELSE_ID" table="sample_something"
+                    column="something_else_id" referenceTable="sample_something_else" referenceColumn="something_else_id" onDelete="SET NULL"/>
+        <index referenceId="SAMPLE_SOMETHING_SAMPLE_SOMETHING_ELSE_SOMETHING_ELSE_ID" indexType="btree">
+            <column name="something_else_id"/>
+        </index>
+    </table>
+    <table name="sample_something_store" resource="default" engine="innodb" comment="Something to Store table">
+        <column xsi:type="smallint" name="something_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="something_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SAMPLE_SOMETHING_STORE_SOMETHING_ID_SAMPLE_SOMETHING_SOMETHING_ID" table="sample_something_store"
+                    column="something_id" referenceTable="sample_something" referenceColumn="something_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SAMPLE_SOMETHING_STORE_STORE_ID_STORE_STORE_ID" table="sample_something_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SAMPLE_SOMETHING_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>
