@@ -153,7 +153,7 @@
             <argument name="attributeCode" xsi:type="string">color</argument>
         </arguments>
     </virtualType>
-    <!-- conifugre store relation -->
+    <!-- configure store relation -->
     <virtualType name="SampleSomethingRelateStoreResourceReadHandler" type="Umc\Crud\Model\ResourceModel\Relation\Store\ReadHandler">
         <arguments>
             <argument name="resource" xsi:type="object">Umc\Sample\Model\ResourceModel\Something</argument>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="add-sample-links" type="Umc\Sample\Plugin\Theme\Block\Html\TopmenuPlugin" />
+    </type>
+    <type name="Umc\Sample\Plugin\Theme\Block\Html\TopmenuPlugin">
+        <arguments>
+            <argument name="nodeData" xsi:type="array">
+                <item name="something" xsi:type="array">
+                    <item name="name" xsi:type="string" translatable="true">Somethings</item>
+                    <item name="id" xsi:type="string">node-something</item>
+                    <item name="url" xsi:type="array">
+                        <item name="class" xsi:type="object">Umc\Sample\ViewModel\Something\Url</item>
+                        <item name="method" xsi:type="string">getListUrl</item>
+                    </item>
+                    <item name="activeHandles" xsi:type="array">
+                        <item name="list" xsi:type="string">sample_something_index</item>
+                        <item name="view" xsi:type="string">sample_something_view</item>
+                    </item>
+                </item>
+                <item name="something_else" xsi:type="array">
+                    <item name="name" xsi:type="string" translatable="true">Something Elses</item>
+                    <item name="id" xsi:type="string">node-something-else</item>
+                    <item name="url" xsi:type="array">
+                        <item name="class" xsi:type="object">Umc\Sample\ViewModel\SomethingElse\Url</item>
+                        <item name="method" xsi:type="string">getListUrl</item>
+                    </item>
+                    <item name="activeHandles" xsi:type="array">
+                        <item name="list" xsi:type="string">sample_somethingelse_index</item>
+                        <item name="view" xsi:type="string">sample_somethingelse_view</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

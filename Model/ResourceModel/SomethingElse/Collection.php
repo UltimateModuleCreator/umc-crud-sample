@@ -37,6 +37,7 @@ class Collection extends AbstractCollection
      * Define resource model
      *
      * @return void
+     * @codeCoverageIgnore
      * //phpcs:disable PSR2.Methods.MethodDeclaration.Underscore,PSR12.Methods.MethodDeclaration.Underscore
      */
     protected function _construct()

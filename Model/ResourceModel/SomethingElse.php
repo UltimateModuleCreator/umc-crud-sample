@@ -27,6 +27,7 @@ class SomethingElse extends AbstractModel
 {
     /**
      * @return void
+     * @codeCoverageIgnore
      * //phpcs:disable PSR2.Methods.MethodDeclaration.Underscore,PSR12.Methods.MethodDeclaration.Underscore
      */
     protected function _construct()

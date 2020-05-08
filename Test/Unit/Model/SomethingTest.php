@@ -21,7 +21,9 @@ declare(strict_types=1);
 
 namespace Umc\Sample\Test\Unit\Model;
 
+use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Umc\Sample\Model\Something;
 
@@ -31,19 +33,25 @@ class SomethingTest extends TestCase
      * @var Something
      */
     private $something;
+    /**
+     * @var Json | MockObject
+     */
+    private $json;
 
     /**
      * setup tests
      */
     protected function setUp()
     {
+        $this->json = $this->createMock(Json::class);
         $om = new ObjectManager($this);
-        $this->something = $om->getObject(Something::class);
+        $this->something = $om->getObject(Something::class, ['json' => $this->json]);
     }
 
     /**
      * @covers \Umc\Sample\Model\Something::getSomethingId
      * @covers \Umc\Sample\Model\Something::setSomethingId
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSomethingId()
     {
@@ -54,6 +62,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getSomethingElseId
      * @covers \Umc\Sample\Model\Something::setSomethingElseId
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSomethingElseId()
     {
@@ -64,6 +73,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getTitle
      * @covers \Umc\Sample\Model\Something::setTitle
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetTitle()
     {
@@ -74,6 +84,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getIsActive
      * @covers \Umc\Sample\Model\Something::setIsActive
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetIsActive()
     {
@@ -84,6 +95,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getTextarea
      * @covers \Umc\Sample\Model\Something::setTextarea
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetTextarea()
     {
@@ -94,6 +106,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getWysiwyg
      * @covers \Umc\Sample\Model\Something::setWysiwyg
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetWysiwyg()
     {
@@ -104,6 +117,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getSomeDate
      * @covers \Umc\Sample\Model\Something::setSomeDate
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSomeDate()
     {
@@ -114,6 +128,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getDateTime
      * @covers \Umc\Sample\Model\Something::setDateTime
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetDateTime()
     {
@@ -124,6 +139,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getCountry
      * @covers \Umc\Sample\Model\Something::setCountry
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetCountry()
     {
@@ -134,6 +150,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getCountryMultiselect
      * @covers \Umc\Sample\Model\Something::setCountryMultiselect
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetCountryMultiselect()
     {
@@ -144,6 +161,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getSimpleCountry
      * @covers \Umc\Sample\Model\Something::setSimpleCountry
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSimpleCountry()
     {
@@ -154,6 +172,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getSimpleCountryMultiselect
      * @covers \Umc\Sample\Model\Something::setSimpleCountryMultiselect
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSimpleCountryMultiselect()
     {
@@ -164,6 +183,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getImage
      * @covers \Umc\Sample\Model\Something::setImage
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetImage()
     {
@@ -174,6 +194,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getFile
      * @covers \Umc\Sample\Model\Something::setFile
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetFile()
     {
@@ -184,6 +205,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getFlag
      * @covers \Umc\Sample\Model\Something::setFlag
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetFlag()
     {
@@ -194,6 +216,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getProductAttribute
      * @covers \Umc\Sample\Model\Something::setProductAttribute
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetProductAttribute()
     {
@@ -204,6 +227,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getProductAttributeMultiselect
      * @covers \Umc\Sample\Model\Something::setProductAttributeMultiselect
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetProductAttributeMultiselect()
     {
@@ -214,6 +238,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getProductAttributeSet
      * @covers \Umc\Sample\Model\Something::setProductAttributeSet
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetProductAttributeSet()
     {
@@ -224,6 +249,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getProductAttributeSetMultiselect
      * @covers \Umc\Sample\Model\Something::setProductAttributeSetMultiselect
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetProductAttributeSetMultiselect()
     {
@@ -234,6 +260,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getRegularSelect
      * @covers \Umc\Sample\Model\Something::setRegularSelect
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetRegularSelect()
     {
@@ -244,6 +271,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getRegularMultiselect
      * @covers \Umc\Sample\Model\Something::setRegularMultiselect
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetRegularMultiselect()
     {
@@ -254,6 +282,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getSomeDecimal
      * @covers \Umc\Sample\Model\Something::setSomeDecimal
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSomeDecimal()
     {
@@ -264,6 +293,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getSomeInteger
      * @covers \Umc\Sample\Model\Something::setSomeInteger
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSomeInteger()
     {
@@ -274,6 +304,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getColor
      * @covers \Umc\Sample\Model\Something::setColor
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetColor()
     {
@@ -284,6 +315,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getColorMultiselect
      * @covers \Umc\Sample\Model\Something::setColorMultiselect
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetColorMultiselect()
     {
@@ -294,6 +326,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getSerializedField
      * @covers \Umc\Sample\Model\Something::setSerializedField
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSerializedField()
     {
@@ -302,8 +335,33 @@ class SomethingTest extends TestCase
     }
 
     /**
+     * @covers \Umc\Sample\Model\Something::getSerializedFieldAsArray
+     * @covers \Umc\Sample\Model\Something::setSerializedField
+     * @covers \Umc\Sample\Model\Something::__construct
+     */
+    public function testGetSerializedFieldAsArray()
+    {
+        $this->something->setSerializedField("serialized");
+        $this->json->expects($this->once())->method('unserialize')->willReturnArgument(0);
+        $this->assertEquals("serialized", $this->something->getSerializedFieldAsArray());
+    }
+
+    /**
+     * @covers \Umc\Sample\Model\Something::getSerializedFieldAsArray
+     * @covers \Umc\Sample\Model\Something::setSerializedField
+     * @covers \Umc\Sample\Model\Something::__construct
+     */
+    public function testGetSerializedFieldAsArrayWithException()
+    {
+        $this->something->setSerializedField("serialized");
+        $this->json->expects($this->once())->method('unserialize')->willThrowException(new \Exception());
+        $this->assertEquals([], $this->something->getSerializedFieldAsArray());
+    }
+
+    /**
      * @covers \Umc\Sample\Model\Something::getStoreId
      * @covers \Umc\Sample\Model\Something::setStoreId
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetStoreId()
     {
@@ -314,6 +372,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getCreatedAt
      * @covers \Umc\Sample\Model\Something::setCreatedAt
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetCreatedAt()
     {
@@ -324,6 +383,7 @@ class SomethingTest extends TestCase
     /**
      * @covers \Umc\Sample\Model\Something::getUpdatedAt
      * @covers \Umc\Sample\Model\Something::setUpdatedAt
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetUpdatedAt()
     {
@@ -333,6 +393,7 @@ class SomethingTest extends TestCase
 
     /**
      * @covers \Umc\Sample\Model\Something::getIdentities
+     * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetIdentities()
     {

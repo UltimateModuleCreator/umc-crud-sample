@@ -1,0 +1,190 @@
+<?php
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+?>
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php /** @var $somethingView \Umc\Sample\ViewModel\Something\View */?>
+<?php /** @var $formatter \Umc\Crud\ViewModel\Formatter */?>
+<?php $somethingView = $block->getData('somethingView'); ?>
+<?php $formatter = $block->getData('formatter'); ?>
+<?php if ($somethingView && $formatter && $something = $somethingView->getSomething()): ?>
+    <div class="something-view">
+        <div class="something-title">
+            <?= $block->escapeHtml($something->getTitle());?>
+        </div>
+        <?php if ($formatter): ?>
+            <div class="something-details">
+                <div class="something-textarea">
+                    <strong><?= $block->escapeHtml(__('Textarea:')); ?></strong>
+                    <?= $formatter->formatHtml($something->getTextarea(), ['type' => 'text']); ?>
+                </div>
+                <div class="something-some-integer">
+                    <strong><?= $block->escapeHtml(__('Some Integer:')); ?></strong>
+                    <?= $formatter->formatHtml($something->getSomeInteger(), ['type' => 'text']); ?>
+                </div>
+                <div class="something-some-decimal">
+                    <strong><?= $block->escapeHtml(__('Some Decimal:')); ?></strong>
+                    <?= $formatter->formatHtml($something->getSomeDecimal(), ['type' => 'text']); ?>
+                </div>
+                <div class="something-wysiwyg">
+                    <strong><?= $block->escapeHtml(__('Wysiwyg:')); ?></strong>
+                    <?= $formatter->formatHtml($something->getWysiwyg(), ['type' => 'editor']); ?>
+                </div>
+                <div class="something-some-date">
+                    <strong><?= $block->escapeHtml(__('Some date:')); ?></strong>
+                    <?= $formatter->formatHtml($something->getSomeDate(), ['type' => 'date']); ?>
+                </div>
+                <div class="something-date-time">
+                    <strong><?= $block->escapeHtml(__('Date time:')); ?></strong>
+                    <?= $formatter->formatHtml($something->getDateTime(), ['type' => 'date', 'show_time' => true]); ?>
+                </div>
+                <div class="something-flag">
+                    <strong><?= $block->escapeHtml(__('Flag:')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        $something->getFlag(),
+                        ['type' => 'options', 'source' => \Magento\Config\Model\Config\Source\Yesno::class]
+                    ); ?>
+                </div>
+                <div class="something-country">
+                    <strong><?= $block->escapeHtml(__('Country:')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        $something->getCountry(),
+                        ['type' => 'options', 'source' => \Magento\Directory\Model\Config\Source\Country::class]
+                    ); ?>
+                </div>
+                <div class="something-simple-country">
+                    <strong><?= $block->escapeHtml(__('Country (with simple select UI)')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        $something->getSimpleCountry(),
+                        ['type' => 'options', 'source' => \Magento\Directory\Model\Config\Source\Country::class]
+                    ); ?>
+                </div>
+                <div class="something-product-attribute-set">
+                    <strong><?= $block->escapeHtml(__('Product Attribute Set')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        $something->getProductAttributeSet(),
+                        ['type' => 'options', 'source' => \Umc\Crud\Source\Catalog\ProductAttributeSet::class]
+                    ); ?>
+                </div>
+                <div class="something-regular-select">
+                    <strong><?= $block->escapeHtml(__('Regular select')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        $something->getRegularSelect(),
+                        ['type' => 'options', 'source' => 'SampleSomethingSourceRegularSelect']
+                    ); ?>
+                </div>
+                <div class="something-color">
+                    <strong><?= $block->escapeHtml(__('Color')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        $something->getColor(),
+                        ['type' => 'options', 'source' => 'SampleSourceColorAttributeOptions']
+                    ); ?>
+                </div>
+                <div class="something-country-multiselect">
+                    <strong><?= $block->escapeHtml(__('Country multiselect:')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        explode(',', $something->getCountryMultiselect()),
+                        ['type' => 'options', 'source' => \Magento\Directory\Model\Config\Source\Country::class]
+                    ); ?>
+                </div>
+                <div class="something-simple-country-multiselect">
+                    <strong><?= $block->escapeHtml(__('Country multiselect (with simple select UI):')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        explode(',', $something->getSimpleCountryMultiselect()),
+                        ['type' => 'options', 'source' => \Magento\Directory\Model\Config\Source\Country::class]
+                    ); ?>
+                </div>
+                <div class="something-product-attribute-multiselect">
+                    <strong><?= $block->escapeHtml(__('Product Attribute multiselect:')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        explode(',', $something->getProductAttributeMultiselect()),
+                        ['type' => 'options', 'source' => \Umc\Crud\Source\Catalog\ProductAttribute::class]
+                    ); ?>
+                </div>
+                <div class="something-regular-multiselect">
+                    <strong><?= $block->escapeHtml(__('Regular Multiselect:')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        explode(',', $something->getRegularMultiselect()),
+                        ['type' => 'options', 'source' => 'SampleSomethingSourceRegularMultiselect']
+                    ); ?>
+                </div>
+                <div class="something-color-multiselect">
+                    <strong><?= $block->escapeHtml(__('Color multiselect:')); ?></strong>
+                    <?= $formatter->formatHtml(
+                        explode(',', $something->getColorMultiselect()),
+                        ['type' => 'options', 'source' => 'SampleSourceColorAttributeOptions']
+                    ); ?>
+                </div>
+                <div class="something-image">
+                    <strong><?= $block->escapeHtml(__('Some Image:')); ?></strong>
+                    <?php $src = $formatter->formatHtml(
+                        $something->getImage(),
+                        [
+                            'type' => 'image',
+                            'resize' => [200],
+                            'path' => 'sample/something/image'
+                        ]
+                    ); ?>
+                    <img src="<?= $block->escapeUrl($src); ?>" alt="" />
+                </div>
+                <div class="something-file">
+                    <strong><?= $block->escapeHtml(__('Some File:')); ?></strong>
+                    <?php $href = $formatter->formatHtml(
+                        $something->getFile(),
+                        [
+                            'type' => 'file',
+                            'path' => 'sample/something/file'
+                        ]
+                    ); ?>
+                    <a href="<?= $block->escapeUrl($href); ?>" target="_blank">
+                        <?php //phpcs:disable Magento2.Functions.DiscouragedFunction?>
+                        <?= $block->escapeHtml(basename($something->getFile())); ?>
+                        <?php //phpcs: enable?>
+                    </a>
+                </div>
+                <?php $serializedField = $something->getSerializedFieldAsArray();?>
+                <?php if (count($serializedField) > 0): ?>
+                    <div class="something-serialized-field">
+                        <strong><?= $block->escapeHtml(__('Serialized:')); ?></strong>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th><?= $block->escapeHtml(__('Field 1:')); ?></th>
+                            <th><?= $block->escapeHtml(__('Field 2:')); ?></th>
+                            <th><?= $block->escapeHtml(__('Select: ')); ?></th>
+                        </tr>
+                        <?php foreach ($serializedField as $index => $item): ?>
+                            <td><?= $block->escapeHtml($index + 1);?></td>
+                            <td><?= $formatter->formatHtml($item['field_one'], ['type' => 'text']);?></td>
+                            <td><?= $formatter->formatHtml($item['field_two'], ['type' => 'text']);?></td>
+                            <td>
+                                <?= $formatter->formatHtml(
+                                    $item['field_select'],
+                                    [
+                                        'type' => 'options',
+                                        'source' => \Magento\Directory\Model\Config\Source\Country::class
+                                    ]
+                                );?>
+                            </td>
+                        <?php endforeach;?>
+                    </table>
+                <?php endif;?>
+            </div>
+        <?php endif;?>
+    </div>
+<?php endif;

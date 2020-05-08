@@ -27,6 +27,7 @@ class Something extends StoreAwareAbstractModel
 {
     /**
      * @return void
+     * @codeCoverageIgnore
      * //phpcs:disable PSR2.Methods.MethodDeclaration.Underscore,PSR12.Methods.MethodDeclaration.Underscore
      */
     protected function _construct()
@@ -40,6 +41,7 @@ class Something extends StoreAwareAbstractModel
      * @param \Magento\Framework\Model\AbstractModel $object
      * @return \Magento\Framework\DB\Select
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @codeCoverageIgnore
      */
     protected function _getLoadSelect($field, $value, $object)
     {

@@ -357,6 +357,11 @@ interface SomethingInterface
     public function getSerializedField();
 
     /**
+     * @return array
+     */
+    public function getSerializedFieldAsArray();
+
+    /**
      * @param string $createdAt
      * @return SomethingInterface
      */
