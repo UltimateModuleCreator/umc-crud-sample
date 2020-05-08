@@ -21,9 +21,14 @@ declare(strict_types=1);
 
 namespace Umc\Sample\Model;
 
+use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Registry;
+use Magento\Framework\Serialize\Serializer\Json;
 use Umc\Sample\Api\Data\SomethingInterface;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
 
 class Something extends AbstractModel implements SomethingInterface, IdentityInterface
 {
@@ -52,11 +57,37 @@ class Something extends AbstractModel implements SomethingInterface, IdentityInt
      * @var string
      */
     protected $_eventObject = 'something';
+
     /**
      * @var string
      */
     protected $_idFieldName = 'something_id';
-    //phpcs emable
+    /**
+     * @var Json
+     */
+    private $json;
+    //phpcs enable
+
+    /**
+     * Something constructor.
+     * @param Context $context
+     * @param Registry $registry
+     * @param Json $json
+     * @param AbstractResource $resource
+     * @param AbstractDb|null $resourceCollection
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        Json $json,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        $this->json = $json;
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
 
     /**
      * @inheritdoc
@@ -473,6 +504,18 @@ class Something extends AbstractModel implements SomethingInterface, IdentityInt
     public function getSerializedField()
     {
         return $this->getData(self::SERIALIZED_FIELD);
+    }
+
+    /**
+     * @return array
+     */
+    public function getSerializedFieldAsArray()
+    {
+        try {
+            return $this->json->unserialize($this->getSerializedField());
+        } catch (\Exception $e) {
+            return [];
+        }
     }
 
     /**

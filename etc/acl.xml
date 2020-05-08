@@ -29,6 +29,13 @@
                         </resource>
                     </resource>
                 </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config" title="Configuration" translate="title" sortOrder="20">
+                            <resource id="Umc_Sample::config" title="Sample Config" translate="title" sortOrder="1000" />
+                        </resource>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>

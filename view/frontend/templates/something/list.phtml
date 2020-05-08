@@ -1,0 +1,73 @@
+<?php
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+?>
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php /** @var $listSomething \Umc\Sample\ViewModel\Something\ListSomething */?>
+<?php $listSomething = $block->getData('listSomething'); ?>
+<?php /** @var $formatter \Umc\Crud\ViewModel\Formatter */?>
+<?php $formatter = $block->getData('formatter'); ?>
+<?php /** @var $somethingUrl \Umc\Sample\ViewModel\Something\Url */?>
+<?php $somethingUrl = $block->getData('somethingUrl'); ?>
+<?php /** @var $somethingElseUrl \Umc\Sample\ViewModel\SomethingElse\Url */?>
+<?php $somethingElseUrl = $block->getData('somethingElseUrl'); ?>
+<?php if ($listSomething): ?>
+    <?php $somethings = $listSomething->getCollection();?>
+    <?php if ($somethings->getSize()): ?>
+        <div class="something-toolbar toolbar top"><?= $listSomething->getPagerHtml(); ?></div>
+        <div class="something-list">
+            <?php foreach ($somethings as $something): ?>
+                <?php /** @var \Umc\Sample\Model\Something $something */?>
+                <div class="something-item">
+                    <div class="something-title">
+                        <?php if ($somethingUrl): ?>
+                            <a href="<?= $block->escapeUrl($somethingUrl->getSomethingUrl($something)); ?>">
+                                <span><?= $block->escapeHtml($something->getTitle()); ?></span>
+                            </a>
+                        <?php else: ?>
+                            <span><?= $block->escapeHtml($something->getTitle()); ?></span>
+                        <?php endif;?>
+                    </div>
+                    <?php if ($formatter): ?>
+                        <div class="something-details">
+                            <div class="something-date-one">
+                                <strong><?= $block->escapeHtml(__('Date:')); ?></strong>
+                                <?= $formatter->formatHtml($something->getTextarea(), ['type' => 'text']); ?>
+                            </div>
+                            <div class="something-image">
+                                <strong><?= $block->escapeHtml(__('Some Image:')); ?></strong>
+                                <?php $src = $formatter->formatHtml(
+                                    $something->getImage(),
+                                    [
+                                        'type' => 'image',
+                                        'resize' => [200],
+                                        'background_color' => [0, 0, 0],
+                                        'path' => 'some_module/something/image'
+                                    ]
+                                );?>
+                                <img src="<?= $block->escapeUrl($src); ?>" alt="" />
+                            </div>
+                        </div>
+                    <?php endif;?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="something-toolbar toolbar bottom"><?= $listSomething->getPagerHtml(); ?></div>
+    <?php else: ?>
+        <?= $block->escapeHtml(__('There are no Somethings at this moment')); ?>
+    <?php endif ?>
+<?php endif;

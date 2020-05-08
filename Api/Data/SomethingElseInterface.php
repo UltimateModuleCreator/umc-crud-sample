@@ -58,7 +58,7 @@ interface SomethingElseInterface
     public function getSomethingElseId();
 
     /**
-     * @param string $title
+     * @param string $name
      * @return SomethingElseInterface
      */
     public function setName($name);

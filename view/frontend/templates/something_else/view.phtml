@@ -1,0 +1,28 @@
+<?php
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+?>
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php /** @var $somethingElseView \Umc\Sample\ViewModel\SomethingElse\View */?>
+<?php $somethingElseView = $block->getData('somethingView'); ?>
+<?php if ($somethingElseView && $somethingElse = $somethingElseView->getSomethingElse()): ?>
+    <div class="something-view">
+        <div class="something-title">
+            <?= $block->escapeHtml($somethingElse->getName());?>
+        </div>
+    </div>
+<?php endif;

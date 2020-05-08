@@ -132,7 +132,7 @@
     <type name="Umc\Sample\Controller\Adminhtml\Something\InlineEdit">
         <arguments>
             <argument name="entityUiManager" xsi:type="object">Umc\Sample\Model\SomethingUiManager</argument>
-            <argument name="dataProcessor" xsi:type="object">SampleSomethingSaveDataProcessor</argument>
+            <argument name="dataProcessor" xsi:type="object">SampleSomethingSaveDataProcessorInlineEdit</argument>
             <argument name="uiConfig" xsi:type="object">SampleSomethingUiConfig</argument>
         </arguments>
     </type>
@@ -286,6 +286,7 @@
             <argument name="fields" xsi:type="array">
                 <item name="image" xsi:type="string">image</item>
             </argument>
+            <argument name="strict" xsi:type="boolean">true</argument>
         </arguments>
     </virtualType>
     <virtualType name="SampleSomethingSaveFileProcessor" type="Umc\Crud\Ui\SaveDataProcessor\Upload">
@@ -295,6 +296,7 @@
             <argument name="fields" xsi:type="array">
                 <item name="file" xsi:type="string">file</item>
             </argument>
+            <argument name="strict" xsi:type="boolean">true</argument>
         </arguments>
     </virtualType>
     <virtualType name="SampleSomethingSaveDynamicRowsProcessor" type="Umc\Crud\Ui\SaveDataProcessor\DynamicRows">
@@ -302,6 +304,15 @@
             <argument name="fields" xsi:type="array">
                 <item name="serialized_field" xsi:type="string">serialized_field</item>
             </argument>
+            <argument name="strict" xsi:type="boolean">false</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSaveDynamicRowsProcessorStrict" type="Umc\Crud\Ui\SaveDataProcessor\DynamicRows">
+        <arguments>
+            <argument name="fields" xsi:type="array">
+                <item name="serialized_field" xsi:type="string">serialized_field</item>
+            </argument>
+            <argument name="strict" xsi:type="boolean">true</argument>
         </arguments>
     </virtualType>
     <virtualType name="SampleSomethingSaveDataProcessor" type="Umc\Crud\Ui\SaveDataProcessor\CompositeProcessor">
@@ -311,6 +322,15 @@
                 <item name="multiselect" xsi:type="object">SampleSomethingSaveMultiselectProcessor</item>
                 <item name="image" xsi:type="object">SampleSomethingSaveImageProcessor</item>
                 <item name="file" xsi:type="object">SampleSomethingSaveFileProcessor</item>
+                <item name="dynamicRows" xsi:type="object">SampleSomethingSaveDynamicRowsProcessorStrict</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SampleSomethingSaveDataProcessorInlineEdit" type="Umc\Crud\Ui\SaveDataProcessor\CompositeProcessor">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="date" xsi:type="object">SampleSomethingSaveDateProcessor</item>
+                <item name="multiselect" xsi:type="object">SampleSomethingSaveMultiselectProcessor</item>
                 <item name="dynamicRows" xsi:type="object">SampleSomethingSaveDynamicRowsProcessor</item>
             </argument>
         </arguments>

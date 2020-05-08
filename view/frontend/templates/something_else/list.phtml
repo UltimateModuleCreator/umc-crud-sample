@@ -1,0 +1,48 @@
+<?php
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+?>
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php /** @var $listSomethingElse \Umc\Sample\ViewModel\SomethingElse\ListSomethingElse */?>
+<?php $listSomethingElse = $block->getData('listSomethingElse'); ?>
+<?php /** @var $somethingElseUrl \Umc\Sample\ViewModel\SomethingElse\Url */?>
+<?php $somethingElseUrl = $block->getData('somethingElseUrl'); ?>
+<?php if ($listSomethingElse): ?>
+    <?php $somethingElses = $listSomethingElse->getCollection();?>
+    <?php if ($somethingElses->getSize()): ?>
+        <div class="something-else-toolbar toolbar top"><?= $listSomethingElse->getPagerHtml(); ?></div>
+        <div class="something-else-list">
+            <?php foreach ($somethingElses as $somethingElse): ?>
+                <?php /** @var \Umc\Sample\Model\SomethingElse $somethingElse */?>
+                <div class="something-else-item">
+                    <div class="something-else-title">
+                        <?php if ($somethingElseUrl): ?>
+                            <a href="<?= $block->escapeUrl($somethingElseUrl->getSomethingElseUrl($somethingElse)); ?>">
+                                <span><?= $block->escapeHtml($somethingElse->getName()); ?></span>
+                            </a>
+                        <?php else: ?>
+                            <span><?= $block->escapeHtml($somethingElse->getName()); ?></span>
+                        <?php endif;?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="something-else-toolbar toolbar bottom"><?= $listSomethingElse->getPagerHtml(); ?></div>
+    <?php else: ?>
+        <?= $block->escapeHtml(__('There are no Something Elses at this moment')); ?>
+    <?php endif ?>
+<?php endif;

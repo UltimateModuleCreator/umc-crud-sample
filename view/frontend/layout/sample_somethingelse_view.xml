@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block name="something-view" template="Umc_Sample::something_else/view.phtml">
+                <arguments>
+                    <argument name="somethingElseView" xsi:type="object">Umc\Sample\ViewModel\SomethingElse\View</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

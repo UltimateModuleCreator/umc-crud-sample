@@ -697,7 +697,7 @@
                         <item name="label" xsi:type="string" translate="true" />
                         <item name="isTemplate" xsi:type="boolean">true</item>
                         <item name="is_collection" xsi:type="boolean">true</item>
-                        <item name="showFallbackReset" xsi:type="boolean">false</item>
+                        <item name="showFallbackReset" xsi:type="boolean">true</item>
                     </item>
                 </argument>
                 <field name="field_one" formElement="input">

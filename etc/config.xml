@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Umc_Sample extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Umc_Sample
+ * @copyright 2020 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sample>
+            <something>
+                <breadcrumbs>1</breadcrumbs>
+                <meta_title>Somethings</meta_title>
+            </something>
+            <something_else>
+                <breadcrumbs>1</breadcrumbs>
+                <meta_title>Something Elses</meta_title>
+            </something_else>
+        </sample>
+    </default>
+</config>
