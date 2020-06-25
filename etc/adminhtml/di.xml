@@ -196,6 +196,7 @@
         <arguments>
             <argument name="uiConfig" xsi:type="object">SampleSomethingElseUiConfig</argument>
             <argument name="uiManager" xsi:type="object">Umc\Sample\Model\SomethingElseUiManager</argument>
+            <argument name="collectionProvider" xsi:type="object">Umc\Sample\Model\SomethingElseUiCollectionProvider</argument>
         </arguments>
     </type>
     <!--[-] configure admin controllers to use the ui entity config for "something else" -->

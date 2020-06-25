@@ -341,9 +341,10 @@ interface SomethingInterface
     public function setColorMultiselect($colorMultiselect);
 
     /**
-     * @return string
+     * @param bool $asArray
+     * @return mixed
      */
-    public function getColorMultiselect();
+    public function getColorMultiselect($asArray = false);
 
     /**
      * @param string $serializedField
@@ -352,14 +353,10 @@ interface SomethingInterface
     public function setSerializedField($serializedField);
 
     /**
-     * @return string
+     * @param bool $asArray
+     * @return mixed
      */
-    public function getSerializedField();
-
-    /**
-     * @return array
-     */
-    public function getSerializedFieldAsArray();
+    public function getSerializedField($asArray = false);
 
     /**
      * @param string $createdAt

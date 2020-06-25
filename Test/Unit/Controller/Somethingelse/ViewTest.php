@@ -94,7 +94,7 @@ class ViewTest extends TestCase
     /**
      * setup tests
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->context = $this->createMock(Context::class);
         $this->somethingElseElseRepository = $this->createMock(SomethingElseRepositoryInterface::class);

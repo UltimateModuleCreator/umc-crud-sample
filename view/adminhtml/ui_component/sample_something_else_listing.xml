@@ -82,7 +82,7 @@
                         <message translate="true">Are you sure you want to delete selected sometings?</message>
                         <title translate="true">Delete</title>
                     </confirm>
-                    <url path="sample/something_else/massDelete"/>
+                    <url path="sample/somethingelse/massDelete"/>
                     <type>delete</type>
                     <label translate="true">Delete</label>
                 </settings>

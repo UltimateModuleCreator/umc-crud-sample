@@ -2,7 +2,7 @@
   "name": "umc/module-sample",
   "description": "Magento 2 sample module that uses Umc_Crud to create the crud part",
   "require": {
-    "php": "~7.1.3||~7.2.0||~7.3.0",
+    "php": "~7.1.3||~7.2.0||~7.3.0||~7.4.0",
     "magento/module-backend": "*",
     "magento/module-config": "*",
     "magento/module-ui": "*",

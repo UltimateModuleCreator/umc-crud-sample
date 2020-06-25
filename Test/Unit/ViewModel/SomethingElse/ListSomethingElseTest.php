@@ -57,7 +57,7 @@ class ListSomethingElseTest extends TestCase
     /**
      * setup tests
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->collectionFactory = $this->createMock(CollectionFactory::class);
         $this->blockFactory = $this->createMock(BlockFactory::class);
