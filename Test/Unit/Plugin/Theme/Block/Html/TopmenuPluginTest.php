@@ -62,7 +62,7 @@ class TopmenuPluginTest extends TestCase
     /**
      * setup tests
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->request = $this->createMock(Http::class);
         $this->nodeFactory = $this->createMock(NodeFactory::class);

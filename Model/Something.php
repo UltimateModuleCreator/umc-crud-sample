@@ -485,9 +485,12 @@ class Something extends AbstractModel implements SomethingInterface, IdentityInt
     /**
      * @inheritdoc
      */
-    public function getColorMultiselect()
+    public function getColorMultiselect($asArray = false)
     {
-        return $this->getData(self::COLOR_MULTISELECT);
+        $value = trim($this->getData(self::COLOR_MULTISELECT) ?? '');
+        return ($asArray)
+            ? ($value ? explode(',', $value) : [])
+            : $value;
     }
 
     /**
@@ -495,27 +498,29 @@ class Something extends AbstractModel implements SomethingInterface, IdentityInt
      */
     public function setSerializedField($serializedField)
     {
+        if (\is_array($serializedField)) {
+            $serializedField = $this->json->serialize($serializedField);
+        }
         return $this->setData(self::SERIALIZED_FIELD, $serializedField);
     }
 
     /**
      * @inheritdoc
      */
-    public function getSerializedField()
+    public function getSerializedField($asArray = false)
     {
-        return $this->getData(self::SERIALIZED_FIELD);
-    }
-
-    /**
-     * @return array
-     */
-    public function getSerializedFieldAsArray()
-    {
-        try {
-            return $this->json->unserialize($this->getSerializedField());
-        } catch (\Exception $e) {
-            return [];
+        $serializedField = $this->getData(self::SERIALIZED_FIELD);
+        if (!$asArray) {
+            return $serializedField;
         }
+        if (!is_array($serializedField)) {
+            try {
+                $serializedField = $this->json->unserialize($serializedField);
+            } catch (\InvalidArgumentException $e) {
+                $serializedField = [];
+            }
+        }
+        return $serializedField;
     }
 
     /**

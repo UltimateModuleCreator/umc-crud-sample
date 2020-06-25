@@ -46,7 +46,7 @@ class Index extends Action
     /**
      * @var string
      */
-    const BREADCRUMBS_CONFIG_PATH = 'sample/something/breadcrumbs';
+    public const BREADCRUMBS_CONFIG_PATH = 'sample/something/breadcrumbs';
     /**
      * @var ScopeConfigInterface
      */

@@ -61,7 +61,7 @@ class ListSomethingTest extends TestCase
     /**
      * setup tests
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->storeManager = $this->createMock(StoreManagerInterface::class);
         $this->collectionFactory = $this->createMock(CollectionFactory::class);

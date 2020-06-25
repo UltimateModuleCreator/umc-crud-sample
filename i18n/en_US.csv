@@ -1,0 +1,132 @@
+Home,Home
+Somethings,Somethings
+Something,Something
+"Something Elses","Something Elses"
+"Something Else","Something Else"
+name,name
+Date:,Date:
+"Some Image:","Some Image:"
+"There are no Somethings at this moment","There are no Somethings at this moment"
+Textarea:,Textarea:
+"Some Integer:","Some Integer:"
+"Some Decimal:","Some Decimal:"
+Wysiwyg:,Wysiwyg:
+"Some date:","Some date:"
+"Date time:","Date time:"
+Flag:,Flag:
+Country:,Country:
+"Country (with simple select UI)","Country (with simple select UI)"
+"Product Attribute Set","Product Attribute Set"
+"Regular select","Regular select"
+Color,Color
+"Country multiselect:","Country multiselect:"
+"Country multiselect (with simple select UI):","Country multiselect (with simple select UI):"
+"Product Attribute multiselect:","Product Attribute multiselect:"
+"Regular Multiselect:","Regular Multiselect:"
+"Color multiselect:","Color multiselect:"
+"Some File:","Some File:"
+Serialized:,Serialized:
+"Field 1:","Field 1:"
+"Field 2:","Field 2:"
+"Select: ","Select: "
+"There are no Something Elses at this moment","There are no Something Elses at this moment"
+Sample,Sample
+Configuration,Configuration
+"Sample Config","Sample Config"
+"Add something new","Add something new"
+"Back to list","Back to list"
+"Save Something","Save Something"
+"Save & Duplicate Something","Save & Duplicate Something"
+"Save & Go to list","Save & Go to list"
+"Delete Soemthing","Delete Soemthing"
+"Are you sure you want to delete something?","Are you sure you want to delete something?"
+"Something successfully deleted","Something successfully deleted"
+"Couldn't find something to delete","Couldn't find something to delete"
+"There was a problem deleting something","There was a problem deleting something"
+"Something successfully saved","Something successfully saved"
+"There was a problem saving something","There was a problem saving something"
+"Something duplicated successfully","Something duplicated successfully"
+"%1 something(s) were successfully deleted","%1 something(s) were successfully deleted"
+"Something else","Something else"
+"Enable Breadcrumbs","Enable Breadcrumbs"
+"List page meta title","List page meta title"
+"List page meta description","List page meta description"
+"List page meta keywords","List page meta keywords"
+"Option 1","Option 1"
+"Option 2","Option 2"
+"Option 3","Option 3"
+"Option 4","Option 4"
+"Multi Option 1","Multi Option 1"
+"Multi Option 2","Multi Option 2"
+"Multi Option 3","Multi Option 3"
+"Multi Option 4","Multi Option 4"
+"Something else Information","Something else Information"
+"Something Else information","Something Else information"
+"Is Active","Is Active"
+Name,Name
+"Add New Something Else","Add New Something Else"
+"Are you sure you want to delete selected sometings?","Are you sure you want to delete selected sometings?"
+Delete,Delete
+Edit,Edit
+ID,ID
+Created,Created
+Modified,Modified
+"Something Information","Something Information"
+"Something information","Something information"
+Title,Title
+"Select where options are instances of another entity","Select where options are instances of another entity"
+Numbers,Numbers
+"Some integer","Some integer"
+"Some decimal","Some decimal"
+Textareas,Textareas
+Textarea,Textarea
+Wysiwyg,Wysiwyg
+Dates,Dates
+"Some date","Some date"
+"Date time","Date time"
+Booleans,Booleans
+Flag,Flag
+Selects,Selects
+Country,Country
+"Select where options are the countries of the world","Select where options are the countries of the world"
+"This is a tooltip","This is a tooltip"
+"Product Attribute","Product Attribute"
+"Select where options the product attributes","Select where options the product attributes"
+"Select where options are the product attribute sets","Select where options are the product attribute sets"
+"Select where options are defined by the developer (see etc/di.xml)","Select where options are defined by the developer (see etc/di.xml)"
+"Select with options from the 'color' product attribute","Select with options from the 'color' product attribute"
+Multiselects,Multiselects
+"Country multiselect","Country multiselect"
+"Multiselect where the options are the countries of the world","Multiselect where the options are the countries of the world"
+"Country multiselect (with simple select UI)","Country multiselect (with simple select UI)"
+"Product Attribute multiselect","Product Attribute multiselect"
+"Multiselect where the options are product attributes","Multiselect where the options are product attributes"
+"Product Attribute Set multiselect","Product Attribute Set multiselect"
+"Multiselect where the options are product attribute sets","Multiselect where the options are product attribute sets"
+"Regular multiselect","Regular multiselect"
+"Multiselect where the options are options defined by the developer (see etc/di.xml)","Multiselect where the options are options defined by the developer (see etc/di.xml)"
+"Color multiselect","Color multiselect"
+Uploads,Uploads
+Image,Image
+File,File
+"Multiple fields","Multiple fields"
+"Add Serialized field","Add Serialized field"
+"Field 1","Field 1"
+"Field 2","Field 2"
+Select,Select
+"Store views","Store views"
+"What is this?","What is this?"
+"Store View","Store View"
+"Add New Something","Add New Something"
+"Some Integer","Some Integer"
+"Some Decimal","Some Decimal"
+"Some Date","Some Date"
+"Date Time","Date Time"
+"Country Multiselect","Country Multiselect"
+"Country Multiselect (with simple ui multiselect)","Country Multiselect (with simple ui multiselect)"
+"Product Attribute Multiselect","Product Attribute Multiselect"
+"Product Attribute Set Multiselect","Product Attribute Set Multiselect"
+"Regular Select","Regular Select"
+"Regular Multiselect","Regular Multiselect"
+"Color Select","Color Select"
+"Color Multiselect","Color Multiselect"

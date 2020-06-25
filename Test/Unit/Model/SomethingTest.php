@@ -41,7 +41,7 @@ class SomethingTest extends TestCase
     /**
      * setup tests
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->json = $this->createMock(Json::class);
         $om = new ObjectManager($this);
@@ -321,6 +321,7 @@ class SomethingTest extends TestCase
     {
         $this->something->setColorMultiselect("1,4");
         $this->assertEquals("1,4", $this->something->getColorMultiselect());
+        $this->assertEquals([1, 4], $this->something->getColorMultiselect(true));
     }
 
     /**
@@ -335,27 +336,41 @@ class SomethingTest extends TestCase
     }
 
     /**
-     * @covers \Umc\Sample\Model\Something::getSerializedFieldAsArray
+     * @covers \Umc\Sample\Model\Something::getSerializedField
+     * @covers \Umc\Sample\Model\Something::setSerializedField
+     * @covers \Umc\Sample\Model\Something::__construct
+     */
+    public function testGetSerializedFieldWithArray()
+    {
+        $this->json->expects($this->once())->method('serialize')->willReturn('serialize');
+        $this->something->setSerializedField(["serialized"]);
+        $this->assertEquals("serialize", $this->something->getSerializedField());
+    }
+
+    /**
+     * @covers \Umc\Sample\Model\Something::getSerializedField
      * @covers \Umc\Sample\Model\Something::setSerializedField
      * @covers \Umc\Sample\Model\Something::__construct
      */
     public function testGetSerializedFieldAsArray()
     {
         $this->something->setSerializedField("serialized");
-        $this->json->expects($this->once())->method('unserialize')->willReturnArgument(0);
-        $this->assertEquals("serialized", $this->something->getSerializedFieldAsArray());
+        $this->json->expects($this->once())->method('unserialize')->willReturn(['unserialized']);
+        $this->assertEquals(['unserialized'], $this->something->getSerializedField(true));
     }
 
     /**
-     * @covers \Umc\Sample\Model\Something::getSerializedFieldAsArray
+     * @covers \Umc\Sample\Model\Something::getSerializedField
      * @covers \Umc\Sample\Model\Something::setSerializedField
      * @covers \Umc\Sample\Model\Something::__construct
      */
-    public function testGetSerializedFieldAsArrayWithException()
+    public function testGetSerializedFieldWithException()
     {
         $this->something->setSerializedField("serialized");
-        $this->json->expects($this->once())->method('unserialize')->willThrowException(new \Exception());
-        $this->assertEquals([], $this->something->getSerializedFieldAsArray());
+        $this->json->expects($this->once())->method('unserialize')->willThrowException(
+            $this->createMock(\InvalidArgumentException::class)
+        );
+        $this->assertEquals([], $this->something->getSerializedField(true));
     }
 
     /**

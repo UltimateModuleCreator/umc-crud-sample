@@ -35,7 +35,7 @@ class SomethingElseTest extends TestCase
     /**
      * setup tests
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $om = new ObjectManager($this);
         $this->somethingElse = $om->getObject(SomethingElse::class);

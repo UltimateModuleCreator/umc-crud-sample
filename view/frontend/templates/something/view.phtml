@@ -156,7 +156,7 @@
                         <?php //phpcs: enable?>
                     </a>
                 </div>
-                <?php $serializedField = $something->getSerializedFieldAsArray();?>
+                <?php $serializedField = $something->getSerializedField(true);?>
                 <?php if (count($serializedField) > 0): ?>
                     <div class="something-serialized-field">
                         <strong><?= $block->escapeHtml(__('Serialized:')); ?></strong>
