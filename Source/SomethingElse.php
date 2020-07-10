@@ -22,11 +22,11 @@ declare(strict_types=1);
 namespace Umc\Sample\Source;
 
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Option\ArrayInterface;
+use Magento\Framework\Data\OptionSourceInterface;
 use Umc\Sample\Api\Data\SomethingElseInterface;
 use Umc\Sample\Api\SomethingElseListRepositoryInterface;
 
-class SomethingElse implements ArrayInterface
+class SomethingElse implements OptionSourceInterface
 {
     /**
      * @var SomethingElseListRepositoryInterface
